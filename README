@@ -2,7 +2,7 @@ Education Management System (console version)
 
 to run the program:
     on linux:
-        - write click on run.sh
+        - right click on run.sh
         - choose 'open as a program'
         or
         - open a shell in the current dir
