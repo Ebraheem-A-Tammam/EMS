@@ -1,3 +1,18 @@
+import sys
+from pathlib import Path
+import os
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+sys.path.append(BASE_DIR)
+
+if not os.path.exists('system.db'):
+    os.system('./__init__/__init__.sh')
+
+print("""running the program...
+______________________\n""")
+
 from models import *
 
 
