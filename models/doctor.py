@@ -1,5 +1,6 @@
 from random import randint
 from datetime import datetime
+from dateutil import parser
 
 from db.executer import execute_query, execute_command
 
@@ -47,7 +48,7 @@ class doctor:
         data = execute_query("""SELECT publisher_name, publisher, post, created_at FROM timeline WHERE publisher_id = '%s'""" %(self.id))
         for r in data:
             print("---------------------------------------------------------------")
-            minuits = int((datetime.now() - r[3]).total_seconds() / 60)
+            minuits = int((datetime.now() - parser.parse(r[3])).total_seconds() / 60)
             print('\n'.join([r[0] + " ({0})".format(r[1]) + ":", r[2], str(minuits) + " minuits" if minuits < 60 else str(r[3])]))
             print("---------------------------------------------------------------")
     
@@ -56,7 +57,7 @@ class doctor:
         data = execute_query("""SELECT post_id, publisher_name, publisher, post, created_at FROM timeline""")
         for r in data:
             print("---------------------------------------------------------------")
-            minuits = int((datetime.now() - r[4]).total_seconds() / 60)
+            minuits = int((datetime.now() - parser.parse(r[4])).total_seconds() / 60)
             print('\n'.join([r[1] + " ({0})".format(r[2]) + ":", r[3], str(minuits) + " minuits" if minuits < 60 else str(r[4])]))
             print("---------------------------------------------------------------")
             index = int(input("Enter 1 to reply, 2 to view replies or any key to view next post: "))
@@ -65,7 +66,7 @@ class doctor:
             elif index == 2:
                 records = execute_query("""SELECT replier, reply, created_at FROM replies WHERE post_id = '%s'""" %(r[0]))
                 for record in records:
-                    m = int((datetime.now() - record[2]).total_seconds() / 60)
+                    m = int((datetime.now() - parser.parse(record[2])).total_seconds() / 60)
                     print('\n'.join([record[0], record[1], str(m) + " minuits" if m < 60 else str(record[2])]))
                     print("---------------------------------------------------------------")
             else:
