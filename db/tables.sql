@@ -39,7 +39,7 @@ CREATE TABLE timeline(
 
 CREATE TABLE replies(
     post_id         VARCHAR(20),
-    publisher       VARCHAR(50),
+    replier         VARCHAR(50),
     reply           TEXT,
-    created_at      DATETIME,
+    created_at      DATETIME
 );
