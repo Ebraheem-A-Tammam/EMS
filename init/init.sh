@@ -21,4 +21,4 @@ sqlite3 system.db < db/tables.sql
 
 echo "Setting up environment finished"
 echo "_______________________________"
-echo ""
+echo "" 
